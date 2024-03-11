@@ -6,3 +6,10 @@ data_url = "http://lib.stat.cmu.edu/datasets/boston"
 raw_df = pd.read_csv(data_url, sep="\s+", skiprows=22, header=None)
 data = np.hstack([raw_df.values[::2, :], raw_df.values[1::2, :2]])
 target = raw_df.values[1::2, 2]
+
+# Preparing Data:
+# STEP 1: Convert data to a pandas DataFrame
+columns = [f"feature_{i}" for i in range(data.shape[1])]  # Creating column names for features
+X = pd.DataFrame(data, columns=columns)
+
+y = target
