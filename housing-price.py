@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+from sklearn.model_selection import train_test_split
 
 # Load dataset
 data_url = "http://lib.stat.cmu.edu/datasets/boston"
@@ -13,3 +14,10 @@ columns = [f"feature_{i}" for i in range(data.shape[1])]  # Creating column name
 X = pd.DataFrame(data, columns=columns)
 
 y = target
+
+# STEP 2: Split the data into training and testing sets:
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+print(X_test)
+
+
