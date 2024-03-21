@@ -13,7 +13,6 @@ def train_model():
     raw_df = pd.read_csv(data_url, sep="\s+", skiprows=22, header=None)
     data = np.hstack([raw_df.values[::2, :], raw_df.values[1::2, :2]])
     target = raw_df.values[1::2, 2]
-    
 
     # Prepare Data
     columns = [f"feature_{i}" for i in range(data.shape[1])]
@@ -30,14 +29,13 @@ def train_model():
     mse = mean_squared_error(y_test, y_pred)
     r2 = r2_score(y_test, y_pred)
     print(f"Model evaluation - MSE: {mse}, R^2: {r2}")
-    
+
     # Save the model to a file
     joblib.dump(model, 'linear_regression_model.joblib')
     
 
 # You would call this function when you want to make a prediction
-def predict_price(trained_model):
-    
+def predict_price(sample_house):
     # Load the trained model from the file
     model = joblib.load('linear_regression_model.joblib')
 
